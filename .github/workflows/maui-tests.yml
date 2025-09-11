@@ -11,7 +11,7 @@ on:
  
 jobs:
   test:
-    runs-on: windows-latest  # Of windows-latest/macOS-latest als specifiek platform nodig is
+    runs-on: windows-latest
     steps:
       - name: Haal de repository op
         uses: actions/checkout@v4
@@ -28,7 +28,7 @@ jobs:
         run: dotnet restore
  
       - name: Bouw de applicatie
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build --configuration Release -f net8.0-windows10.0.19041.0 /p:RuntimeIdentifierOverride=win-x64
  
       - name: Voer unit tests uit
         run: dotnet test --configuration Release --no-restore --no-build --verbosity normal
